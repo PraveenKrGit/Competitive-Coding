@@ -1,1 +1,1 @@
-# Competitive Coding in LeetCode.
+# Competitive Programming in LeetCode.
