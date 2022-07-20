@@ -8,7 +8,7 @@ class Solution {
             res[0]='a';
         }
         
-        return new String(res);
+        return String.valueOf(res);
     }
     
 }
