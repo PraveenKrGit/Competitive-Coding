@@ -9,23 +9,33 @@
  */
 
 class Solution {
-    
-    TreeNode ans, target;
-    
-    public void inorder(TreeNode o, TreeNode c){
-        if(o != null){
-            inorder(o.left, c.left);
-            if(o==target)
-                    ans = c;
-            inorder(o.right, c.right);
-        }
-    }
-    
-    
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-        this.target = target;
-        inorder(original, cloned);
-        return ans;
+        Deque<TreeNode> stack_o = new ArrayDeque();
+        Deque<TreeNode> stack_c = new ArrayDeque();
+        
+        TreeNode node_o = original;
+        TreeNode node_c= cloned;
+        
+        while(!stack_o.isEmpty()|| node_o !=null){
+            while(node_o != null){
+                stack_o.add(node_o);
+                stack_c.add(node_c);
+                
+                node_o = node_o.left;
+                node_c = node_c.left;
+                
+            }
+            node_o = stack_o.removeLast();
+            node_c = stack_c.removeLast();
+            
+            if(node_o==target)
+                return node_c;
+            
+            node_o= node_o.right;
+            node_c= node_c.right;
+        }
+        
+        return null;
         
     }
 }
