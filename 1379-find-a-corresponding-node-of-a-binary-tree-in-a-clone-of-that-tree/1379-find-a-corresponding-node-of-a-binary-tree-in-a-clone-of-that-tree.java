@@ -10,32 +10,33 @@
 
 class Solution {
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-        Deque<TreeNode> stack_o = new ArrayDeque();
-        Deque<TreeNode> stack_c = new ArrayDeque();
         
-        TreeNode node_o = original;
-        TreeNode node_c= cloned;
+        // BFS Iterative Traversal
+        Deque<TreeNode> queue_o = new ArrayDeque();
+        queue_o.offer(original);
         
-        while(!stack_o.isEmpty()|| node_o !=null){
-            while(node_o != null){
-                stack_o.add(node_o);
-                stack_c.add(node_c);
-                
-                node_o = node_o.left;
-                node_c = node_c.left;
-                
-            }
-            node_o = stack_o.removeLast();
-            node_c = stack_c.removeLast();
+        Deque<TreeNode> queue_c = new ArrayDeque();
+        queue_c.offer(cloned);
+        
+        while(!queue_o.isEmpty()){
+            TreeNode node_o = queue_o.poll();
+            TreeNode node_c = queue_c.poll();
             
-            if(node_o==target)
+            if(node_o== target){
                 return node_c;
+            }
             
-            node_o= node_o.right;
-            node_c= node_c.right;
+            if(node_o.left != null){
+                queue_o.offer(node_o.left);
+                queue_c.offer(node_c.left);
+            }
+            
+            if(node_c.right != null){
+                queue_o.offer(node_o.right);
+                queue_c.offer(node_c.right);
+            }
         }
         
         return null;
-        
     }
 }
