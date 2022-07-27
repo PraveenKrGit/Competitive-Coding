@@ -1,24 +1,16 @@
-
 class Solution {
     
-    //Iterative solutiion
+    //Recursive solution
+    
+    List<Integer> list = new ArrayList<>();
     public List<Integer> preorder(Node root) {
-        List<Integer> list = new ArrayList<>();
-        Deque<Node> stack = new ArrayDeque<>();
         
-        if(root== null)
+        if(root == null)
             return list;
         
-        stack.push(root);
-        
-        while(!stack.isEmpty()){
-            root = stack.pop();
-            list.add(root.val);
-            
-            for(int i=root.children.size()-1;i>=0;i--){
-                stack.push(root.children.get(i));
-            }
-        }
+        list.add(root.val);
+        for(Node node: root.children)
+            preorder(node);
         
         return list;
     }
