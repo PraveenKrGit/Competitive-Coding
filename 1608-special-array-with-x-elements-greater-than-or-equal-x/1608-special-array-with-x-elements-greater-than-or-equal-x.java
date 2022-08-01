@@ -1,21 +1,19 @@
 class Solution {
     public int specialArray(int[] nums) {
-        int[] count = new int[1001];
+        int n = nums.length;
         
-        for(int ele: nums){
-            count[ele]++;
-        }
-        
-        int res =0;
-        int x = nums.length;
-        
-        for(int i=0;i<=100;i++){
-            if(x==i)
-                return i;
+        for(int i=1;i<=n;i++){
+            int count =0;
+            for(int j=0;j<n;j++){
+                if(nums[j]>= i){
+                    count++;
+                }
+            }
             
-            x -=count[i];
+            if(count ==i)
+                return count;
         }
-        
         return -1;
     }
+    
 }
