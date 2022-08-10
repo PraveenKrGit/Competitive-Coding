@@ -1,17 +1,10 @@
 class Solution {
     public boolean judgeSquareSum(int c) {
-        long start =0;
-        long end = (long) Math.sqrt(c);
-        
-        while(start<=end){
-            long res = start*start + end*end;
-            if(res<c)
-                start++;
+        HashSet <Integer> set = new HashSet<>();
+        for(int i= 0;i<=Math.sqrt(c);i++){
+            set.add(i*i);
             
-            else if(res>c)
-                end--;
-            
-            else
+            if(set.contains(c-i*i))
                 return true;
         }
         return false;
