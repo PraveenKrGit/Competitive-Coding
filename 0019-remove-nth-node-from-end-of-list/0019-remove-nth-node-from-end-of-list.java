@@ -14,6 +14,7 @@ class Solution {
         
         ListNode slow = head, fast = head;
         
+        //moves fast before the 'removing node'
         for(int i=0;i<n;i++){
             fast = fast.next;    
         }
@@ -21,6 +22,9 @@ class Solution {
         if(fast==null)
             return head.next;
         
+        //distance between fast and slow is n
+        //so till fast reaches the last node
+        //slow reaches before the 'removing node'
         while(fast.next != null){
             fast = fast.next;
             slow =slow.next;
