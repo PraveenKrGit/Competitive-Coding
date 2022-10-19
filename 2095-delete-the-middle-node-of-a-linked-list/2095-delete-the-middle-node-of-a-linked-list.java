@@ -2,7 +2,8 @@ class Solution {
     public ListNode deleteMiddle(ListNode head) {
         
         if(head.next == null){
-            return head.next;
+            head = null;
+            return head;
         }
         
         ListNode start = head;
